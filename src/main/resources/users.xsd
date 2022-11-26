@@ -1,0 +1,80 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://test/users"
+           xmlns:tns="http://test/users"
+           elementFormDefault="qualified">
+
+    <xs:element name="getUsersRequest"/>
+
+    <xs:element name="getUsersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:userDTO" minOccurs="0" maxOccurs="unbounded" name="users"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="login" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userDTO" type="tns:userDTO"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="userDTO">
+        <xs:sequence>
+            <xs:element name="login" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element type="tns:roleDTO" minOccurs="0" maxOccurs="unbounded" name="roles"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="roleDTO">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="createUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userDTO" type="tns:userDTO"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userDTO" type="tns:userDTO"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="login" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Response">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+                <xs:element type="xs:string" minOccurs="0" maxOccurs="unbounded" name="messages"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
